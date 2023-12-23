@@ -1,2 +1,2 @@
-# Langton-s-ant
+# Langtons-ant
 Mrówka Langtona

@@ -1,12 +1,13 @@
-#include "characters.h"
+
 #include "genBoard.h"
-#include <stddef.h>
+#include "ant.h"
+
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <wchar.h>
-#include <locale.h>
 #include <time.h>
 #include <math.h>
+#include "characters.h"
 
 
 
@@ -77,9 +78,9 @@ void freeBoard(wchar_t** board, int rows) {
     free(board);
 }
 
-wchar_t** genMap(int n, int m, int percent) {
+wchar_t** genMap(int n, int m, int percent, int antX, int antY, char* direction) {
     srand(time(NULL));
-    setlocale(LC_ALL, "C.UTF-8");
+
 
     n += 1;
     m += 1;
@@ -137,6 +138,17 @@ wchar_t** genMap(int n, int m, int percent) {
     korekta(board,blackCount,n, m);
 
 
+// funkcja jakaś
+    if (board[antX][antY] == SQUARE_BLACK[0]){
+        board[antX][antY] = dictAnt(direction, "black");  
+        
+    }
+
+    else {
+        board[antX][antY] = dictAnt(direction, "white");
+
+    }
+ //
 
     return board;
 

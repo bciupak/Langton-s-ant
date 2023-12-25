@@ -1,13 +1,17 @@
-objects = main.o genBoard.o dataMgmt.o
+objects = main.o genBoard.o dataMgmt.o characters.o ant.o
 
 
 edit : $(objects)
 	cc -o edit $(objects) -lm
-main.o : main.c genBoard.h dataMgmt.h
+main.o : main.c genBoard.h dataMgmt.h characters.h
 	cc -c main.c
 genBoard.o : genBoard.c  characters.h
 
 dataMgmt.o : dataMgmt.c 
+
+characters.o : characters.c
+
+ant.o : ant.c characters.h
 
 clean :
 	rm edit $(objects)

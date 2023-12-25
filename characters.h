@@ -1,5 +1,8 @@
-#pragma once
+#ifndef CHARACTERS
+#define CHARACTERS
+
 #include <wchar.h>
+#include <stdio.h>
 
 // border and "Ant" characters
 
@@ -20,5 +23,5 @@ wchar_t* ARROW_SOUTH_BLACK = L"▼";
 wchar_t* ARROW_WEST_WHITE = L"◁";
 wchar_t* ARROW_WEST_BLACK = L"◀";
 
-
+#endif // CHARACTERS
 // use %ls to print wchar_t*

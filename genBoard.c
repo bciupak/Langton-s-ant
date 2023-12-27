@@ -23,6 +23,7 @@ void boardOut(wchar_t **board, int n, int m){
     for (int i = 0; i < n + 1; i++){
         for (int j = 0; j < m + 1; j++)
             printf("%lc", board[i][j]);
+        
         printf("\n");
     }
 
@@ -81,6 +82,7 @@ void freeBoard(wchar_t** board, int rows) {
 wchar_t** genMap(int n, int m, int percent, int antX, int antY, char* direction) {
     srand(time(NULL));
 
+    int dir = DirectionNumber(direction);
 
     n += 1;
     m += 1;
@@ -138,17 +140,8 @@ wchar_t** genMap(int n, int m, int percent, int antX, int antY, char* direction)
     korekta(board,blackCount,n, m);
 
 
-// funkcja jakaś
-    if (board[antX][antY] == SQUARE_BLACK[0]){
-        board[antX][antY] = dictAnt(direction, "black");  
-        
-    }
+    board[antX][antY]  = dictAnt(dir, Color(board[antX][antY]));
 
-    else {
-        board[antX][antY] = dictAnt(direction, "white");
-
-    }
- //
 
     return board;
 

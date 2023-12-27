@@ -7,14 +7,14 @@
 #include <math.h>
 #include "characters.h"
 
-
+#include "ant.h"
 #include "genBoard.h"
 #include "dataMgmt.h"
 
 void test(int *n, int *m, int *i, int *percent, char **name, char **direction, char **in){
-    *n = 30;
-    *m = 20;
-    *i = 10;
+    *n = 10;
+    *m = 10;
+    *i = 1000;
     *percent = 25;
     *name = "mapaTest";
     // *direction = "s";
@@ -39,24 +39,24 @@ int main(int argc, char **argv) {
 
     direction = argc > 2 ? argv[2] : "s";
     // printf("%s", direction);
-
+    wchar_t** mapa;
     if (argc > 1){
         percent = atoi(argv[1]);
-        wchar_t** mapa = genMap(n, m, percent, x, y, direction);
+        mapa = genMap(n, m, percent, x, y, direction);
         boardOut(mapa, n, m);
+        master(mapa, n, m, x, y, i, direction);
         fileOut(mapa, n, m, name);
    
     } else {
-        wchar_t** mapa = fileIn(in, n, m);
+        mapa = fileIn(in, n, m);
         boardOut(mapa, n, m);
-        freeBoard(mapa, n);
+        master(mapa, n, m, x, y, i, direction);
+
+        
 
     }
 
     
-    
-
-
     
 
     return 0;

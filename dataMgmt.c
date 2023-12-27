@@ -2,24 +2,28 @@
 #include <stdlib.h>
 #include <wchar.h>
 #include <locale.h>
+#include <string.h>
 
-// char* filename_Number(char* name, int number) {
-   
-//     int nameLen = strlen(name);
-//     int numLen = snprintf(NULL, 0, "_%d", number); 
+char* filename_Number(char* name, int number) {
+    const char* dirPrefix = "output_files/";
+
+    int nameLen = strlen(name);
+    int numLen = snprintf(NULL, 0, "_%d", number);
+
+    char* file = (char*)malloc(nameLen + numLen + 2 + strlen(dirPrefix));
+
+    if (file == NULL) 
+        return NULL;
+
+    strcpy(file, dirPrefix);
+    strcat(file, name);
+    snprintf(file + nameLen + strlen(dirPrefix), numLen + 2, "_%d", number);
 
 
-//     char *file = (char *)malloc(nameLen + numLen + 1); 
 
-    
-//     strcpy(file, name);
 
-    
-//     snprintf(file + nameLen, numLen + 1, "_%d", number);
-
-//     return file;
-// }
-
+    return file;
+}
 
 
 void fileOut(wchar_t** board, int n, int m, char* name){
@@ -33,6 +37,8 @@ void fileOut(wchar_t** board, int n, int m, char* name){
             fprintf(out,"%lc", board[i][j]);
         fprintf(out, "\n");
     }
+
+    fclose(out);
 
 }
 
